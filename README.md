@@ -26,6 +26,8 @@
     ├── routes
     │   ├── api.js
     │   └── web.js
+    │── package.json
+    │── server.js
     └── ...
 
 ## Installation
