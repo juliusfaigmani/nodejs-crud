@@ -8,6 +8,26 @@
 - VueJS
 - Axios
 
+## Structure
+    .
+    ├── ...
+    ├── app
+    │   ├── Controllers
+    │   ├── Helpers
+    │   ├── Models
+    │   └── View
+    ├── config
+    │   └── env.json
+    ├── public
+    │   ├── images
+    │   ├── css
+    │   ├── js
+    │   └── lib
+    ├── routes
+    │   ├── api.js
+    │   └── web.js
+    └── ...
+
 ## Installation
 - Install nodejs ([http://nodejs.org/](http://nodejs.org/))
 - Clone the repository by running `git clone git@github.com:juliusfaigmani/nodejs-crud.git`
