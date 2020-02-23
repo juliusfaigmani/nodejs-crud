@@ -1,0 +1,56 @@
+<!-- Modal -->
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="text-center success" v-if="success">
+				<i class="mdi mdi-check-circle-outline text-success"></i>
+				<h3>Registration completed successfully!</h3>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+			<form method="post" v-bind:action="action" @submit.prevent="onSubmit" v-if="!success">
+			<div class="modal-header">
+				<h5 class="modal-title" v-text="title"></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			
+			<div class="modal-body">
+				<div class="alert alert-danger" role="alert" v-if="errors.alert" v-text="errors.alert"></div>
+				<div class="form-row" v-if="register != 'login'">
+					<div class="form-group col-md-6">
+						<label for="first_name">First Name</label>
+						<input type="text" class="form-control" id="first_name" v-model="form.first_name">
+						<small class="form-text text-danger" v-if="errors.first_name" v-text="errors.first_name"></small>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="last_name">Last Name</label>
+						<input type="text" class="form-control" id="last_name" v-model="form.last_name">
+						<small class="form-text text-danger" v-if="errors.last_name" v-text="errors.last_name"></small>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="email">Email</label>
+						<input type="text" class="form-control" id="email" v-model="form.email">
+						<small class="form-text text-danger" v-if="errors.email" v-text="errors.email"></small>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="password">Password</label>
+						<input type="password" class="form-control" id="password" v-model="form.password">
+						<small class="form-text text-danger" v-if="errors.password" v-text="errors.password"></small>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary" v-if="!loading">Submit</button>
+				<button class="btn btn-primary" type="button" disabled v-if="loading">
+					<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+					Loading...
+				</button>
+			</div>
+			</form>
+		</div>
+	</div>
+</div><!-- Modal -->
