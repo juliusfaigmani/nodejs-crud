@@ -3,7 +3,7 @@
 * author: julius.faigmani@gmail.com
 */
 exports.index = function(req, res){
-	res.render('home');
+    res.render('home');
 }
 
 
@@ -13,6 +13,6 @@ exports.index = function(req, res){
 * author: julius.faigmani@gmail.com
 */
 exports.logout = function(req, res){
-	req.session.destroy();
-	res.redirect('/');
+    req.session.destroy();
+    res.redirect('/');
 }

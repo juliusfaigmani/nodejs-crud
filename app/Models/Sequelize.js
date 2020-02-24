@@ -1,4 +1,4 @@
-const $env 		= require('../../config/env.json');
+const $env      = require('../../config/env.json');
 const Sequelize = require('sequelize');
 
 /*
@@ -59,8 +59,8 @@ const operatorsAliases = {
 */
 const sequelize = new Sequelize($env.DB.DATABASE, $env.DB.USERNAME, $env.DB.PASSWORD, {
         operatorsAliases,
-		host: $env.DB.HOST,
-		dialect: 'mysql',
+        host: $env.DB.HOST,
+        dialect: 'mysql',
         dialectOptions:{
             dateStrings: true,
             typeCast: function (field, next) { // for reading from database
@@ -70,17 +70,17 @@ const sequelize = new Sequelize($env.DB.DATABASE, $env.DB.USERNAME, $env.DB.PASS
                 return next()
             },
         },
-		pool: {
-			max: 10,
-			min: 0,
-			acquire: 30000,
-			idle: 10000,
-			timestamps: false,
+        pool: {
+            max: 10,
+            min: 0,
+            acquire: 30000,
+            idle: 10000,
+            timestamps: false,
             dateStrings: true
-		},
+        },
         timezone: $env.DB.TZ,
-		logging: false
-	}
+        logging: false
+    }
 );
 
 sequelize.authenticate().then(() => {

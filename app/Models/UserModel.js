@@ -1,9 +1,9 @@
 module.exports = (sequelize, type) => {
     return sequelize.define('users', {
         id: {
-			type: type.INTEGER,
-			primaryKey: true,
-			autoIncrement: true
+            type: type.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
         },
         first_name: {
             type: type.STRING,
@@ -23,6 +23,6 @@ module.exports = (sequelize, type) => {
         },
     },
     {
-    	timestamps: true
+        timestamps: true
     });
 }
