@@ -1,8 +1,6 @@
 const jwt = require('jsonwebtoken');
 const $env = require('../../../config/env.json');
 const bcrypt = require('bcryptjs');
-const saltRounds = 10;
-
 const {
 	sequelize,
 	Users
@@ -61,10 +59,15 @@ exports.login = function(req, res){
 			// JWT 
 			// for api usage
 			let token = jwt.sign({
-			  data: user.email
-			}, $env.jwt.key, { expiresIn: $env.jwt.exp });
+				id: user.id,
+			  	email: user.email
+			}, 
+			$env.jwt.key, 
+			{ 
+				expiresIn: $env.jwt.exp 
+			});
 
-			res.cookie('_token', token, { maxAge: parseInt($env.jwt.exp) * 1000 });
+			res.cookie($env.jwt.token_name, token, { maxAge: parseInt($env.jwt.exp) * 1000 });
 
 			res.status(201).json({
 				success: true,

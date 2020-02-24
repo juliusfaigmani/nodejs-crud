@@ -1,6 +1,5 @@
 const bcrypt = require('bcryptjs');
-const saltRounds = 10;
-
+const $env = require('../../../config/env.json');
 const {
 	sequelize,
 	Users
@@ -11,18 +10,22 @@ const {
 * author: julius.faigmani@gmail.com
 */
 exports.fetch = function(req, res){
-	Users.findAll({
-		order: [
-			['first_name','asc']
-		],
-		attributes: ['id','first_name','last_name','email']
-	}).then(function(data){
-		records = data;
-		res.status(200).json({
-			success: true,
-			records: records
+	// if(!res.locals.user){
+	// 	res.status(200).json({records:null});
+	// }else{
+		Users.findAll({
+			order: [
+				['first_name','asc']
+			],
+			attributes: ['id','first_name','last_name','email']
+		}).then(function(data){
+			records = data;
+			res.status(200).json({
+				success: true,
+				records: records
+			});
 		});
-	});
+	//}
 }
 
 /*
@@ -46,7 +49,7 @@ exports.register = function(req, res){
   	let email = req.body.email;
   	let password = req.body.password;
   	//created hashed password using bcrypt
-  	var salt = bcrypt.genSaltSync(saltRounds);
+  	var salt = bcrypt.genSaltSync($env.SALT_ROUNDS);
 		password = bcrypt.hashSync(password, salt);
 	
 	let reqData = {
@@ -106,7 +109,7 @@ exports.update = function(req, res){
   	let email = req.body.email;
   	let password = req.body.password;
   	//created hashed password using bcrypt
-  	var salt = bcrypt.genSaltSync(saltRounds);
+  	var salt = bcrypt.genSaltSync($env.SALT_ROUNDS);
 
 	let reqData = {
 		first_name: req.body.first_name,
