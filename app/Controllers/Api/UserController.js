@@ -10,22 +10,18 @@ const {
 * author: julius.faigmani@gmail.com
 */
 exports.fetch = function(req, res){
-    if(!res.locals.user){
-        res.status(200).json({records:null});
-    }else{
-        Users.findAll({
-            order: [
-                ['first_name','asc']
-            ],
-            attributes: ['id','first_name','last_name','email']
-        }).then(function(data){
-            records = data;
-            res.status(200).json({
-                success: true,
-                records: records
-            });
+    Users.findAll({
+        order: [
+            ['first_name','asc']
+        ],
+        attributes: ['id','first_name','last_name','email']
+    }).then(function(data){
+        records = data;
+        res.status(200).json({
+            success: true,
+            records: records
         });
-    }
+    });
 }
 
 /*
