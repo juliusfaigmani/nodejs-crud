@@ -10,9 +10,9 @@ const {
 * author: julius.faigmani@gmail.com
 */
 exports.fetch = function(req, res){
-    // if(!res.locals.user){
-    //  res.status(200).json({records:null});
-    // }else{
+    if(!res.locals.user){
+        res.status(200).json({records:null});
+    }else{
         Users.findAll({
             order: [
                 ['first_name','asc']
@@ -25,7 +25,7 @@ exports.fetch = function(req, res){
                 records: records
             });
         });
-    //}
+    }
 }
 
 /*
